@@ -1,0 +1,23 @@
+{
+  "name": "boardgamevote",
+  "version": "0.0.0",
+  "description": "System for choosing what board game to play.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coltonw/boardgamevote.git"
+  },
+  "author": "coltonw@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/coltonw/boardgamevote/issues"
+  },
+  "homepage": "https://github.com/coltonw/boardgamevote",
+  "dependencies": {
+    "logfmt": "^0.21.0",
+    "express": "^3.4.8"
+  }
+}
