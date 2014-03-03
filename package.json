@@ -18,6 +18,11 @@
   "homepage": "https://github.com/coltonw/boardgamevote",
   "dependencies": {
     "logfmt": "^0.21.0",
-    "express": "^3.4.8"
+    "express": "^3.4.8",
+    "consolidate": "^0.10.0",
+    "dustjs-linkedin": "^2.2.8"
+  },
+  "engines": {
+    "node": "0.10.x"
   }
 }
