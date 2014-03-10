@@ -1,3 +1,5 @@
+var mongoClient = require('mongodb').MongoClient,
+    mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/mydb';
 /*
  * GET home page.
  */

@@ -49,7 +49,7 @@
     <div class="control-group">{~n}
       <label class="control-label" for="game_{$idx}">{name}</label>{~n}
       <div class="controls">{~n}
-        <input id="game_{$idx}" name="{$idx}" type="text" placeholder="0" class="input-xlarge">{~n}
+        <input id="game_{$idx}" name="{$idx}" type="text" value="{vote[$idx]}" class="input-xlarge">{~n}
       </div>{~n}
     </div>{~n}
     {/games}
