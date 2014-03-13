@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create a Board Game Ballot!</title>
+
+    <!-- Bootstrap -->
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+  <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Project name</a>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div><!--/.nav-collapse -->
+    </div>
+  </div>
+  <div class="container" style="padding-top: 50px;">
+    <h1>Create Your Ballot!</h1>
+    <form class="form-horizontal" name="input" action="{action}" method="post">
+    <fieldset>
+
+    <!-- Form Name -->
+    <legend>Create Ballot for 10 games</legend>
+
+    <!-- Text input-->
+    <div class="control-group">
+      <label class="control-label" for="game_0_name">Game 0 Name</label>
+      <div class="controls">
+        <input id="game_0_name" name="game_0_name" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_0_id">Game 0 Id</label>
+      <div class="controls">
+        <input id="game_0_id" name="game_0_id" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_1_name">Game 1 Name</label>
+      <div class="controls">
+        <input id="game_1_name" name="game_1_name" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_1_id">Game 1 Id</label>
+      <div class="controls">
+        <input id="game_1_id" name="game_1_id" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_2_name">Game 2 Name</label>
+      <div class="controls">
+        <input id="game_2_name" name="game_2_name" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_2_id">Game 2 Id</label>
+      <div class="controls">
+        <input id="game_2_id" name="game_2_id" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_3_name">Game 3 Name</label>
+      <div class="controls">
+        <input id="game_3_name" name="game_3_name" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_3_id">Game 3 Id</label>
+      <div class="controls">
+        <input id="game_3_id" name="game_3_id" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_4_name">Game 4 Name</label>
+      <div class="controls">
+        <input id="game_4_name" name="game_4_name" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_4_id">Game 4 Id</label>
+      <div class="controls">
+        <input id="game_4_id" name="game_4_id" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_5_name">Game 5 Name</label>
+      <div class="controls">
+        <input id="game_5_name" name="game_5_name" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_5_id">Game 5 Id</label>
+      <div class="controls">
+        <input id="game_5_id" name="game_5_id" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_6_name">Game 6 Name</label>
+      <div class="controls">
+        <input id="game_6_name" name="game_6_name" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_6_id">Game 6 Id</label>
+      <div class="controls">
+        <input id="game_6_id" name="game_6_id" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_7_name">Game 7 Name</label>
+      <div class="controls">
+        <input id="game_7_name" name="game_7_name" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_7_id">Game 7 Id</label>
+      <div class="controls">
+        <input id="game_7_id" name="game_7_id" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_8_name">Game 8 Name</label>
+      <div class="controls">
+        <input id="game_8_name" name="game_8_name" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_8_id">Game 8 Id</label>
+      <div class="controls">
+        <input id="game_8_id" name="game_8_id" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_9_name">Game 9 Name</label>
+      <div class="controls">
+        <input id="game_9_name" name="game_9_name" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_9_id">Game 9 Id</label>
+      <div class="controls">
+        <input id="game_9_id" name="game_9_id" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <br>
+    <!-- Button -->
+    <div class="control-group">
+      <div class="controls">
+        <button id="singlebutton" class="btn btn-primary" type="submit">Submit</button>
+      </div>
+    </div>
+    </fieldset>
+    </form>
+    </div> <!-- /.container -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  </body>
+</html>
