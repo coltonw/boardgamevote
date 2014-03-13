@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap 101 Template</title>
+    <title>Vote on a Board Game!</title>
 
     <!-- Bootstrap -->
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
@@ -43,16 +43,18 @@
     <fieldset>
 
     <!-- Form Name -->
-    <legend>Rank Games Below</legend>
+    <legend>Rank games below starting at 1. TIES ARE ALLOWED!!!</legend>
     {#games}
     <!-- Text input-->{~n}
     <div class="control-group">{~n}
       <label class="control-label" for="game_{$idx}">{name}</label>{~n}
       <div class="controls">{~n}
-        <input id="game_{$idx}" name="{$idx}" type="text" placeholder="0" class="input-xlarge">{~n}
+        <input id="game_{$idx}" name="{id}" type="text" placeholder="0" class="input-xlarge">{~n}
       </div>{~n}
     </div>{~n}
     {/games}
+    <input type="hidden" name="ballot" value="{ballot}">
+    <br>
     
     <!-- Button -->
     <div class="control-group">

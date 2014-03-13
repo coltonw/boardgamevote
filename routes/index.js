@@ -4,5 +4,12 @@ var mongoClient = require('mongodb').MongoClient,
  * GET home page.
  */
 exports.index = function(req, res){
-  res.render('index', {action: 'vote', games: [{name: '7 Wonders'},{name: 'Small World'},{name: 'Ticket To Ride'},{name: 'Lords of Waterdeep'}] });
+    mongoClient.connect(mongoUri, function (err, db) {
+      db.collection('ballot', function(er, collection) {
+        collection.findOne(function(err, ballot) {
+            if (!ballot) return next(new Error('Ballot not found'));
+            res.render('index', {action: 'vote', games: ballot.games, ballot: ballot._id.toHexString() });
+        });
+      });
+    });
 };

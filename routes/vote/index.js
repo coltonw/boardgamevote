@@ -8,7 +8,7 @@ var mongoClient = require('mongodb').MongoClient,
 exports.before = function(req, res, next, id){
     console.log('before vote with id ' + id);
     mongoClient.connect(mongoUri, function (err, db) {
-        db.collection('bgv', function(er, collection) {
+        db.collection('vote', function(er, collection) {
             collection.findOne({_id: new ObjectID.createFromHexString(id)}, function(err, vote) {
                 if (!vote) return next(new Error('Vote not found'));
                 req.vote = vote;
@@ -18,12 +18,55 @@ exports.before = function(req, res, next, id){
     });
 };
 
+// For now this function assumes every game is listed and that their are no extra games.
+function convertToCleanVote(voteBody) {
+    var keys = Object.keys(voteBody),
+        clean = 0,
+        nextVal = 0,
+        curMin = parseInt(voteBody[keys[0]], 10),
+        cleanVote = [];
+    
+    // Get the current minimum value in the vote
+    // and convert all the int strings to numbers
+    keys.forEach(function(key){
+        voteBody[key] = parseInt(voteBody[key], 10);
+        curMin = Math.min(voteBody[key], curMin);
+    });
+    
+    // Go through the vote adding each value to the clean vote
+    while(clean < keys.length) {
+        // Reset the next minimum
+        nextMin = Number.MAX_VALUE;
+        cleanVote.push([]);
+        keys.forEach(function(key){
+            if(voteBody[key] === curMin) {
+                // Set all the minimum values to be the current value we want set
+                cleanVote[nextVal].push(key);
+                clean++;
+            } else if(voteBody[key] > curMin){
+                // Find what the next minimum will be
+                nextMin = Math.min(voteBody[key], nextMin);
+            }
+        });
+        curMin = nextMin;
+        nextVal++;
+    }
+    console.log(cleanVote);
+    return cleanVote;
+}
+
 exports.create = function(req, res, next){
-    var body = req.body, i, id = new ObjectID();
+    var body = req.body, i,
+        id = new ObjectID(),
+        ballot = body.ballot;
+    delete body.ballot;
 
     mongoClient.connect(mongoUri, function (err, db) {
-      db.collection('bgv', function(er, collection) {
-        collection.insert({_id: id,'vote': body}, {w: 1}, function(er,rs) {
+      db.collection('vote', function(er, collection) {
+        collection.insert({
+            _id: id,
+            vote: convertToCleanVote(body),
+            ballot: new ObjectID.createFromHexString(ballot)}, {w: 1}, function(er,rs) {
         });
       });
     });
@@ -35,5 +78,22 @@ exports.create = function(req, res, next){
  */
 exports.show = function(req, res){
     console.log(req.vote);
-    res.render('vote', {games: [{name: '7 Wonders'},{name: 'Small World'},{name: 'Ticket To Ride'},{name: 'Lords of Waterdeep'}], 'vote': req.vote.vote});
+    mongoClient.connect(mongoUri, function (err, db) {
+      db.collection('ballot', function(er, collection) {
+        collection.findOne({_id: req.vote.ballot}, function(err, ballot) {
+            var ballotIndex = {};
+            if (!ballot) return next(new Error('Ballot not found'));
+            ballot.games.forEach(function(game){
+                ballotIndex[game.id] = game.name;
+            });
+            req.vote.vote.forEach(function(tier, i){
+                tier.forEach(function(gameId, j){
+                    req.vote.vote[i][j] = ballotIndex[gameId] || 'Unknown game index';
+                });
+            });
+            res.render('vote', {'vote': req.vote.vote});
+        });
+      });
+    });
+    
 };
