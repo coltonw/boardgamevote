@@ -1,20 +1,16 @@
 //
 // Ballot database interactions
 //
-var mongoClient = require('mongodb').MongoClient,
-    ObjectID = require('mongodb').ObjectID,
-    mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/mydb',
+var ObjectID = require('mongodb').ObjectID,
     indiff = require('../../lib/indiff');
 
 exports.before = function(req, res, next, id){
     console.log('before ballot with id ' + id);
-    mongoClient.connect(mongoUri, function (err, db) {
-        db.collection('ballot', function(er, collection) {
-            collection.findOne({_id: new ObjectID.createFromHexString(id)}, function(err, ballot) {
-                if (!ballot) return next(new Error('Ballot not found'));
-                req.ballot = ballot;
-                next();
-            });
+    req.db.collection('ballot', function(er, collection) {
+        collection.findOne({_id: new ObjectID.createFromHexString(id)}, function(err, ballot) {
+            if (!ballot) return next(new Error('Ballot not found'));
+            req.ballot = ballot;
+            next();
         });
     });
 };
@@ -31,16 +27,14 @@ function cleanBallot(ballotBody) {
     return games;
 }
 
-exports.create = function(req, res, next){
+exports.create = function(req, res){
     var body = req.body, i, id = new ObjectID();
 
-    mongoClient.connect(mongoUri, function (err, db) {
-      db.collection('ballot', function(er, collection) {
+    req.db.collection('ballot', function(er, collection) {
         collection.insert({_id: id,'games': cleanBallot(body)}, {w: 1}, function(er,rs) {
+            res.redirect('/');
         });
-      });
     });
-    res.redirect('/');
 };
 
 /*
@@ -55,8 +49,7 @@ exports.index = function(req, res){
  */
 exports.show = function(req, res){
     console.log(req.ballot);
-    mongoClient.connect(mongoUri, function (err, db) {
-      db.collection('vote', function(er, collection) {
+    req.db.collection('vote', function(er, collection) {
         collection.find({ballot: req.ballot._id}).toArray(function(er,votes) {
             var results, cleanVotes = [], games = [];
             console.log("Votes:");
@@ -83,6 +76,5 @@ exports.show = function(req, res){
             });
             res.render('tally', {games: games, winners: results.majority});
         });
-      });
     });
 };

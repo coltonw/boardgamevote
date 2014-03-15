@@ -1,19 +1,15 @@
 //
 // Vote database interactions
 //
-var mongoClient = require('mongodb').MongoClient,
-    ObjectID = require('mongodb').ObjectID,
-    mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/mydb';
+var ObjectID = require('mongodb').ObjectID;
 
 exports.before = function(req, res, next, id){
     console.log('before vote with id ' + id);
-    mongoClient.connect(mongoUri, function (err, db) {
-        db.collection('vote', function(er, collection) {
-            collection.findOne({_id: new ObjectID.createFromHexString(id)}, function(err, vote) {
-                if (!vote) return next(new Error('Vote not found'));
-                req.vote = vote;
-                next();
-            });
+    req.db.collection('vote', function(er, collection) {
+        collection.findOne({_id: new ObjectID.createFromHexString(id)}, function(err, vote) {
+            if (!vote) return next(new Error('Vote not found'));
+            req.vote = vote;
+            next();
         });
     });
 };
@@ -61,14 +57,12 @@ exports.create = function(req, res, next){
         ballot = body.ballot;
     delete body.ballot;
 
-    mongoClient.connect(mongoUri, function (err, db) {
-      db.collection('vote', function(er, collection) {
+    req.db.collection('vote', function(er, collection) {
         collection.insert({
             _id: id,
             vote: convertToCleanVote(body),
             ballot: new ObjectID.createFromHexString(ballot)}, {w: 1}, function(er,rs) {
         });
-      });
     });
     res.redirect('/vote/' + id.toHexString());
 };
@@ -78,8 +72,7 @@ exports.create = function(req, res, next){
  */
 exports.show = function(req, res){
     console.log(req.vote);
-    mongoClient.connect(mongoUri, function (err, db) {
-      db.collection('ballot', function(er, collection) {
+    req.db.collection('ballot', function(er, collection) {
         collection.findOne({_id: req.vote.ballot}, function(err, ballot) {
             var ballotIndex = {};
             if (!ballot) return next(new Error('Ballot not found'));
@@ -93,7 +86,5 @@ exports.show = function(req, res){
             });
             res.render('vote', {'vote': req.vote.vote});
         });
-      });
     });
-    
 };
