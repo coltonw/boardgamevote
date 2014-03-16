@@ -59,7 +59,7 @@
     {/votes}
     </div>{~n}
     {/games}
-    <h1>{winners} are the winners</h1>
+    <h1>{winner} is the winner!</h1>
   </div> <!-- /.container -->
     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

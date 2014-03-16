@@ -4,7 +4,6 @@
 var ObjectID = require('mongodb').ObjectID;
 
 exports.before = function(req, res, next, id){
-    console.log('before vote with id ' + id);
     req.db.collection('vote', function(er, collection) {
         collection.findOne({_id: new ObjectID.createFromHexString(id)}, function(err, vote) {
             if (!vote) return next(new Error('Vote not found'));
