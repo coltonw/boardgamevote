@@ -7,7 +7,8 @@
     <title>Vote on a Board Game!</title>
 
     <!-- Bootstrap -->
-	<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{staticUrl}/style/tieable.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,27 +40,30 @@
   </div>
   <div class="container" style="padding-top: 50px;">
     <h1>PREPARE TO VOTE</h1>
-    <form class="form-horizontal" name="input" action="{action}" method="post">
-    <fieldset>
+    <form class="form-horizontal" name="input" action="{action}" method="post" role="form">
 
     <!-- Form Name -->
-    <legend>Rank games below starting at 1. TIES ARE ALLOWED!!!</legend>
-    {#games}
-    <!-- Text input-->{~n}
-    <div class="control-group">{~n}
-      <label class="control-label" for="game_{$idx}">{name}</label>{~n}
-      <div class="controls">{~n}
-        <input id="game_{$idx}" name="{id}" type="text" placeholder="0" class="input-xlarge">{~n}
-      </div>{~n}
-    </div>{~n}
-    {/games}
+    <legend>Drag and drop games to rank games below. Each horizontal level is one rank and TIES ARE ALLOWED!!!</legend>
+    <div class="row">
+        <label for="inputNickname" class="col-sm-2 control-label">Nickname</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputNickname" placeholder="Nickname" name="nickname">
+        </div>
+    </div>
+    <div class="row">
+      <ul class="tieable">
+      {#games}
+        <li id="{id}" class="col-sm-2">{name}</li>
+      {/games}
+      </ul>
+    </div>
     <input type="hidden" name="ballot" value="{ballot}">
-    <br>
+    <input type="hidden" name="action" value="{action}">
     
     <!-- Button -->
-    <div class="control-group">
-      <div class="controls">
-        <button id="singlebutton" class="btn btn-primary" type="submit">Submit</button>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button class="btn btn-default" type="submit">Submit</button>
       </div>
     </div>
     </fieldset>
@@ -69,5 +73,8 @@
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="{staticUrl}/js/html.sortable.0.1.1.js"></script>
+    <script src="{staticUrl}/js/tieable.js"></script>
+    <script src="{staticUrl}/js/voteMain.js"></script>
   </body>
 </html>

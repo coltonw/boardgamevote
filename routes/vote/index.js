@@ -53,17 +53,19 @@ function convertToCleanVote(voteBody) {
 exports.create = function(req, res, next){
     var body = req.body, i,
         id = new ObjectID(),
-        ballot = body.ballot;
-    delete body.ballot;
+        ballot = body.ballot,
+        vote = body.vote,
+        nickname = body.nickname;
 
     req.db.collection('vote', function(er, collection) {
         collection.insert({
             _id: id,
-            vote: convertToCleanVote(body),
+            vote: vote,
+            nickname: nickname,
             ballot: new ObjectID.createFromHexString(ballot)}, {w: 1}, function(er,rs) {
         });
     });
-    res.redirect('/vote/' + id.toHexString());
+    res.json({redirect:'/vote/' + id.toHexString()});
 };
 
 /*
@@ -83,7 +85,7 @@ exports.show = function(req, res){
                     req.vote.vote[i][j] = ballotIndex[gameId] || 'Unknown game index';
                 });
             });
-            res.render('vote', {'vote': req.vote.vote});
+            res.render('vote', {vote: req.vote.vote, nickname: req.vote.nickname});
         });
     });
 };

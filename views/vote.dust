@@ -49,7 +49,7 @@
     </div>
   </div>
   <div class="container" style="padding-top: 50px;">
-    <h1>Your Vote</h1>
+    <h1>{nickname}'s Vote</h1>
     {#vote}
     <!-- vote row -->
     <div class="row">{~n}
