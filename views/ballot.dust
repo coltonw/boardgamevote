@@ -59,6 +59,12 @@
       </div>
     </div>
     <div class="control-group">
+      <label class="control-label" for="game_0_thumb">Game 0 Thumb</label>
+      <div class="controls">
+        <input id="game_0_thumb" name="game_0_thumb" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
       <label class="control-label" for="game_1_name">Game 1 Name</label>
       <div class="controls">
         <input id="game_1_name" name="game_1_name" type="text" class="input-xlarge">
@@ -68,6 +74,12 @@
       <label class="control-label" for="game_1_id">Game 1 Id</label>
       <div class="controls">
         <input id="game_1_id" name="game_1_id" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_1_thumb">Game 1 Thumb</label>
+      <div class="controls">
+        <input id="game_1_thumb" name="game_1_thumb" type="text" class="input-xlarge">
       </div>
     </div>
     <div class="control-group">
@@ -83,6 +95,12 @@
       </div>
     </div>
     <div class="control-group">
+      <label class="control-label" for="game_2_thumb">Game 2 Thumb</label>
+      <div class="controls">
+        <input id="game_2_thumb" name="game_2_thumb" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
       <label class="control-label" for="game_3_name">Game 3 Name</label>
       <div class="controls">
         <input id="game_3_name" name="game_3_name" type="text" class="input-xlarge">
@@ -92,6 +110,12 @@
       <label class="control-label" for="game_3_id">Game 3 Id</label>
       <div class="controls">
         <input id="game_3_id" name="game_3_id" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_3_thumb">Game 3 Thumb</label>
+      <div class="controls">
+        <input id="game_3_thumb" name="game_3_thumb" type="text" class="input-xlarge">
       </div>
     </div>
     <div class="control-group">
@@ -107,6 +131,12 @@
       </div>
     </div>
     <div class="control-group">
+      <label class="control-label" for="game_4_thumb">Game 4 Thumb</label>
+      <div class="controls">
+        <input id="game_4_thumb" name="game_4_thumb" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
       <label class="control-label" for="game_5_name">Game 5 Name</label>
       <div class="controls">
         <input id="game_5_name" name="game_5_name" type="text" class="input-xlarge">
@@ -116,6 +146,12 @@
       <label class="control-label" for="game_5_id">Game 5 Id</label>
       <div class="controls">
         <input id="game_5_id" name="game_5_id" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_5_thumb">Game 5 Thumb</label>
+      <div class="controls">
+        <input id="game_5_thumb" name="game_5_thumb" type="text" class="input-xlarge">
       </div>
     </div>
     <div class="control-group">
@@ -131,6 +167,12 @@
       </div>
     </div>
     <div class="control-group">
+      <label class="control-label" for="game_6_thumb">Game 6 Thumb</label>
+      <div class="controls">
+        <input id="game_6_thumb" name="game_6_thumb" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
       <label class="control-label" for="game_7_name">Game 7 Name</label>
       <div class="controls">
         <input id="game_7_name" name="game_7_name" type="text" class="input-xlarge">
@@ -140,6 +182,12 @@
       <label class="control-label" for="game_7_id">Game 7 Id</label>
       <div class="controls">
         <input id="game_7_id" name="game_7_id" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_7_thumb">Game 7 Thumb</label>
+      <div class="controls">
+        <input id="game_7_thumb" name="game_7_thumb" type="text" class="input-xlarge">
       </div>
     </div>
     <div class="control-group">
@@ -155,6 +203,12 @@
       </div>
     </div>
     <div class="control-group">
+      <label class="control-label" for="game_8_thumb">Game 8 Thumb</label>
+      <div class="controls">
+        <input id="game_8_thumb" name="game_8_thumb" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
       <label class="control-label" for="game_9_name">Game 9 Name</label>
       <div class="controls">
         <input id="game_9_name" name="game_9_name" type="text" class="input-xlarge">
@@ -164,6 +218,12 @@
       <label class="control-label" for="game_9_id">Game 9 Id</label>
       <div class="controls">
         <input id="game_9_id" name="game_9_id" type="text" class="input-xlarge">
+      </div>
+    </div>
+    <div class="control-group">
+      <label class="control-label" for="game_9_thumb">Game 9 Thumb</label>
+      <div class="controls">
+        <input id="game_9_thumb" name="game_9_thumb" type="text" class="input-xlarge">
       </div>
     </div>
     <br>

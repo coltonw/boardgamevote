@@ -52,7 +52,10 @@
     <div class="row">
       <ul class="tieable">
       {#games}
-        <li id="{id}" class="col-sm-2">{name}</li>
+        {?thumbnail}<li id="{id}" class="col-md-2"><a href="http://boardgamegeek.com/boardgame/{id}" target="_blank"><img src="http://cf.geekdo-images.com/images/pic496014_t.jpg"></a></li>
+        {:else}
+            <li id="{id}" class="col-md-2"><a href="http://boardgamegeek.com/boardgame/{id}" target="_blank">{name}</a></li>
+        {/thumbnail}
       {/games}
       </ul>
     </div>

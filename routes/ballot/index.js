@@ -21,7 +21,8 @@ function cleanBallot(ballotBody) {
     while(ballotBody['game_' + i + '_name'] && ballotBody['game_' + i + '_name'] !== '') {
         games.push({
             name: ballotBody['game_' + i + '_name'],
-            id: ballotBody['game_' + i + '_id']
+            id: ballotBody['game_' + i + '_id'],
+            thumbnail: ballotBody['game_' + i + '_thumb']
         });
         i++;
     }
