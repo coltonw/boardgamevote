@@ -2,7 +2,9 @@
 // Ballot database interactions
 //
 var ObjectID = require('mongodb').ObjectID,
-    indiff = require('../../lib/indiff');
+    indiff = require('../../lib/indiff'),
+    votesRoute = require('../vote'),
+    extend = require('node.extend');
 
 exports.before = function(req, res, next, id){
     req.db.collection('ballot', function(er, collection) {
@@ -50,8 +52,8 @@ exports.show = function(req, res){
     console.log(req.ballot);
     req.db.collection('vote', function(er, collection) {
         collection.find({ballot: req.ballot._id}).toArray(function(er,votes) {
-            var results, games = [], winner = '';
-            results = indiff.instantRunoff(votes);
+            var results, games = [], winner = '', ballotIndex = {};
+            results = indiff.instantRunoff(extend(true, [], votes));
 
             req.ballot.games.forEach(function(game){
                 var i, gameResults = {name: game.name, votes:[]};
@@ -71,9 +73,17 @@ exports.show = function(req, res){
                 if(game.id === results.winner) {
                     winner = game.name;
                 }
+                ballotIndex[game.id] = game.name;
                 games.push(gameResults);
             });
-            res.render('tally', {games: games, winner: winner});
+            votes.forEach(function(vote, k) {
+                vote.vote.forEach(function(tier, i){
+                    tier.forEach(function(gameId, j){
+                        votes[k].vote[i][j] = ballotIndex[gameId] || 'Unknown game index';
+                    });
+                });
+            });
+            res.render('tally', {games: games, winner: winner, votes: votes});
         });
     });
 };

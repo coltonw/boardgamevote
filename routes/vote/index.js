@@ -85,7 +85,7 @@ exports.show = function(req, res){
                     req.vote.vote[i][j] = ballotIndex[gameId] || 'Unknown game index';
                 });
             });
-            res.render('vote', {vote: req.vote.vote, nickname: req.vote.nickname});
+            res.render('vote', {vote: req.vote.vote, nickname: req.vote.nickname, ballot: req.vote.ballot});
         });
     });
 };

@@ -1,0 +1,8 @@
+{#vote}
+<!-- vote row -->
+<div class="row">{~n}
+{#.}
+<div class="col-md-2">{.}</div>{~n}
+{/.}
+</div>{~n}
+{/vote}
