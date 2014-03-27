@@ -1,8 +1,16 @@
 {#vote}
 <!-- vote row -->
-<div class="row">{~n}
+<div class="row {@if cond="{$idx} == 0"}vote{/if}">{~n}
 {#.}
-<div class="col-md-2">{.}</div>{~n}
+
+{?thumbnail}
+<div class="col-sm-2 thumb">
+  <a href="http://boardgamegeek.com/boardgame/{id}" target="_blank"><img src="{thumbnail}"></a>
+{:else}
+<div class="col-sm-2">
+  <a href="http://boardgamegeek.com/boardgame/{id}" target="_blank">{name}</a>
+{/thumbnail}
+</div>{~n}
 {/.}
 </div>{~n}
 {/vote}

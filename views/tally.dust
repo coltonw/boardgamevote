@@ -22,8 +22,12 @@
             background-color: #eee;
             border: 1px solid #ddd;
         }
+        .thumb[class^=col-] {
+            border: none;
+            text-align: center;
+        }
         .row {
-            margin-bottom: 15px;
+            margin-bottom: 30px;
         }
     </style>
   </head>
@@ -42,7 +46,7 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li><a href="/">Home</a></li>
-                <li class="active"><a href=".">Final Tally</a></li>
+                <li class="active"><a href="#">Final Tally</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

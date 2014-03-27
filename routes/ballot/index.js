@@ -74,13 +74,13 @@ exports.show = function(req, res){
                 if(game.id === results.winner) {
                     winner = game.name;
                 }
-                ballotIndex[game.id] = game.name;
+                ballotIndex[game.id] = game;
                 games.push(gameResults);
             });
             votes.forEach(function(vote, k) {
                 vote.vote.forEach(function(tier, i){
                     tier.forEach(function(gameId, j){
-                        votes[k].vote[i][j] = ballotIndex[gameId] || 'Unknown game index';
+                        votes[k].vote[i][j] = ballotIndex[gameId] || {name:'Unknown game index'};
                     });
                 });
             });

@@ -22,8 +22,12 @@
             background-color: #eee;
             border: 1px solid #ddd;
         }
+        .thumb[class^=col-] {
+            border: none;
+            text-align: center;
+        }
         .row {
-            margin-bottom: 15px;
+            margin-bottom: 30px;
         }
     </style>
   </head>

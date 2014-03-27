@@ -78,7 +78,7 @@ exports.show = function(req, res){
             var ballotIndex = {};
             if (!ballot) return next(new Error('Ballot not found'));
             ballot.games.forEach(function(game){
-                ballotIndex[game.id] = game.name;
+                ballotIndex[game.id] = game;
             });
             req.vote.vote.forEach(function(tier, i){
                 tier.forEach(function(gameId, j){
