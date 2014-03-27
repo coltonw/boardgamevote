@@ -4,7 +4,10 @@
 var ObjectID = require('mongodb').ObjectID,
     indiff = require('../../lib/indiff'),
     votesRoute = require('../vote'),
-    extend = require('node.extend');
+    extend = require('node.extend'),
+    xml2js = require('xml2js'),
+    request = require('request'),
+    config = require('../../config.js');
 
 exports.before = function(req, res, next, id){
     req.db.collection('ballot', function(er, collection) {
@@ -33,8 +36,8 @@ exports.create = function(req, res){
     var body = req.body, i, id = new ObjectID();
 
     req.db.collection('ballot', function(er, collection) {
-        collection.insert({_id: id,'games': cleanBallot(body)}, {w: 1}, function(er,rs) {
-            res.redirect('/');
+        collection.insert({_id: id, 'games': body.ballot}, {w: 1}, function(er,rs) {
+            res.json({redirect:'/'});
         });
     });
 };
@@ -43,7 +46,15 @@ exports.create = function(req, res){
  * GET ballot main index.
  */
 exports.index = function(req, res){
-    res.render('ballot', {action: 'ballot'});
+    var parser = new xml2js.Parser();
+    request.get('http://www.boardgamegeek.com/xmlapi2/collection?username=dagreenmachine&own=1', function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            parser.parseString(body, function (err, result) {
+                res.render('ballot', {staticUrl: config.staticUrl, action: 'ballot', games: result.items.item});
+            });
+        }
+    });
+    
 };
 
 /*

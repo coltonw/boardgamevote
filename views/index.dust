@@ -68,7 +68,6 @@
         <button class="btn btn-default" type="submit">Submit</button>
       </div>
     </div>
-    </fieldset>
     </form>
     </div> <!-- /.container -->
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
