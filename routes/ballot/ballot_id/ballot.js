@@ -21,9 +21,12 @@ exports.ballot_id = function(req, res, next, id){
  * GET ballot page.
  */
 exports.index = function(req, res){
-    console.log(req.ballot);
     req.db.collection('vote', function(er, collection) {
         collection.find({ballot: req.ballot._id}).toArray(function(er,votes) {
+            if(votes.length <= 0) {
+                res.render('tally', {games: games, winner: 'NO VOTES YET', votes: votes});
+                return;
+            }
             var results, games = [], winner = '', ballotIndex = {};
             results = indiff.instantRunoff(extend(true, [], votes));
 

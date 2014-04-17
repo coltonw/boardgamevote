@@ -26,7 +26,7 @@ exports.index = function(req, res){
     request.get('http://www.boardgamegeek.com/xmlapi2/collection?username=dagreenmachine&own=1', function (error, response, body) {
         if (!error && response.statusCode == 200) {
             parser.parseString(body, function (err, result) {
-                res.render('ballot', {staticUrl: config.staticUrl, action: 'ballot', games: result.items.item});
+                res.render('ballot', {staticUrl: config.staticUrl, action: 'api/ballot', games: result.items.item});
             });
         }
     });
