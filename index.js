@@ -23,7 +23,6 @@ app.use(bodyParser());
 // load routes
 require('./lib/boot')(app, { verbose: verbose });
 require('losdos')(app, { verbose: verbose, routes: __dirname + '/routes' });
-app.get('/', routes.index);
 
 var port = Number(process.env.PORT || 5000);
 app.listen(port, function() {

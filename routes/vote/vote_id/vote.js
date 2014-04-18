@@ -36,4 +36,4 @@ exports.index = function(req, res){
             res.render('vote', {vote: req.vote.vote, nickname: req.vote.nickname, ballot: req.vote.ballot});
         });
     });
-};;
+};

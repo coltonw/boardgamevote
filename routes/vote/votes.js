@@ -1,6 +1,7 @@
 //
 // Votes database interactions
 //
+var ObjectID = require('mongodb').ObjectID;
 
 // For now this function assumes every game is listed and that their are no extra games.
 function convertToCleanVote(voteBody) {
@@ -56,8 +57,8 @@ exports.post = {
                 vote: vote,
                 nickname: nickname,
                 ballot: new ObjectID.createFromHexString(ballot)}, {w: 1}, function(er,rs) {
+                res.json({redirect:'/vote/' + id.toHexString()});
             });
         });
-        res.json({redirect:'/vote/' + id.toHexString()});
     }
 };
