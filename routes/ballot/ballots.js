@@ -12,15 +12,15 @@ exports.post = {
 
         req.db.collection('ballot', function(er, collection) {
             collection.insert({_id: id, 'games': body.ballot}, {w: 1}, function(er,rs) {
-                res.json({redirect:'/'});
+                res.json({redirect:'/ballot/' + id.toHexString() + '/vote'});
             });
         });
     }
 };
 
-/*
- * GET ballot main index.
- */
+//
+// GET ballot main index.
+//
 exports.index = function(req, res){
     var parser = new xml2js.Parser();
     request.get('http://www.boardgamegeek.com/xmlapi2/collection?username=dagreenmachine&own=1', function (error, response, body) {

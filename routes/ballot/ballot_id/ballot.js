@@ -3,10 +3,11 @@
 //
 var ObjectID = require('mongodb').ObjectID,
     indiff = require('../../../lib/indiff'),
-    extend = require('node.extend');
-/*
- * PARAM of ballot_id
- */
+    extend = require('node.extend'),
+    config = require('../../../config.js');
+//
+// PARAM of ballot_id
+//
 exports.ballot_id = function(req, res, next, id){
     req.db.collection('ballot', function(er, collection) {
         collection.findOne({_id: new ObjectID.createFromHexString(id)}, function(err, ballot) {
@@ -17,10 +18,10 @@ exports.ballot_id = function(req, res, next, id){
     });
 };
 
-/*
- * GET ballot page.
- */
-exports.index = function(req, res){
+//
+// GET tally page for this ballot.
+//
+exports.tally = function(req, res){
     req.db.collection('vote', function(er, collection) {
         collection.find({ballot: req.ballot._id}).toArray(function(er,votes) {
             if(votes.length <= 0) {
@@ -61,4 +62,14 @@ exports.index = function(req, res){
             res.render('tally', {games: games, winner: winner, votes: votes});
         });
     });
+};
+
+// The home page for this ballot is currently an alias for its tally.
+exports.index = exports.tally;
+
+/*
+ * GET voting booth for this ballot.
+ */
+exports.vote = function(req, res) {
+    res.render('votingBooth', {staticUrl: config.staticUrl, action: '/api/vote', games: req.ballot.games, ballot: req.ballot._id.toHexString() });
 };

@@ -1,4 +1,4 @@
-var config = require('../config.js');
+var ballotRoute = require('./ballot/ballot_id/ballot.js');
 
 /*
  * GET home page.
@@ -7,7 +7,8 @@ exports.index = function(req, res){
     req.db.collection('ballot', function(er, collection) {
         collection.findOne({},{sort: {$natural:-1}},function(err, ballot) {
             if (!ballot) return next(new Error('Ballot not found'));
-            res.render('index', {staticUrl: config.staticUrl, action: '/api/vote', games: ballot.games, ballot: ballot._id.toHexString() });
+            req.ballot = ballot;
+            ballotRoute.vote(req, res);
         });
     });
 };
