@@ -9,9 +9,8 @@ var ObjectID = require('mongodb').ObjectID,
 exports.post = {
     index: function(req, res){
         var body = req.body, i, id = new ObjectID();
-
         req.db.collection('ballot', function(er, collection) {
-            collection.insert({_id: id, 'games': body.ballot}, {w: 1}, function(er,rs) {
+            collection.insert({_id: id, games: body.ballot, name: body.name}, {w: 1}, function(er,rs) {
                 res.json({redirect:'/ballot/' + id.toHexString() + '/vote'});
             });
         });

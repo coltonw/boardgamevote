@@ -39,9 +39,13 @@
     <h1>Create Your Ballot!</h1>
     <form class="form-horizontal" name="input" action="{action}" method="post" role="form">
 
-    <!-- Form Name -->
-    <legend>Create Ballot for 10 games</legend>
-    
+    <div class="row">
+        <label for="inputName" class="col-sm-2 control-label">Ballot Name</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="inputName" placeholder="Name" name="name">
+        </div>
+    </div>
+
     {#games}
     <div class="checkbox">
       <label>
