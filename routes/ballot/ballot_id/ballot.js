@@ -25,33 +25,28 @@ exports.tally = function(req, res){
     req.db.collection('vote', function(er, collection) {
         collection.find({ballot: req.ballot._id}).toArray(function(er,votes) {
             if(votes.length <= 0) {
-                res.render('tally', {games: games, winner: 'NO VOTES YET', votes: votes});
+                res.render('tally', {mmpoResults: {winnerName: 'NO VOTES YET'}, votes: votes});
                 return;
             }
-            var results, games = [], winner = '', ballotIndex = {};
-            results = indiff.instantRunoff(extend(true, [], votes));
+            var irvResults, mmpoResults, ballotIndex = {}, i;
+            mmpoResults = indiff.minimaxPairwiseOpposition(votes);
+            irvResults = indiff.instantRunoff(extend(true, [], votes));
+            console.log(mmpoResults);
 
             req.ballot.games.forEach(function(game){
-                var i, gameResults = {name: game.name, votes:[]};
-                for(i = 0; i < results.previousResults.length; i++) {
-                    if(results.previousResults[i].tally[game.id]) {
-                        gameResults.votes.push(results.previousResults[i].tally[game.id]);
-                    } else {
-                        gameResults.votes.push('Eliminated');
-                        break;
-                    }
+                if(game.id === irvResults.winner) {
+                    irvResults.winnerName = game.name;
                 }
-                if(results.tally[game.id]) {
-                    gameResults.votes.push(results.tally[game.id]);
-                } else if (gameResults.votes[gameResults.votes.length-1] !== 'Eliminated') {
-                    gameResults.votes.push('Eliminated');
-                }
-                if(game.id === results.winner) {
-                    winner = game.name;
+                if(game.id === mmpoResults.winner) {
+                    mmpoResults.winnerName = game.name;
                 }
                 ballotIndex[game.id] = game;
-                games.push(gameResults);
             });
+            if(mmpoResults.tied){
+                for(i = 0; i < mmpoResults.tied.length; i++) {
+                    mmpoResults.tied[i] = ballotIndex[mmpoResults.tied[i]] || {name:'Unknown game index'};
+                }
+            }
             votes.forEach(function(vote, k) {
                 vote.vote.forEach(function(tier, i){
                     tier.forEach(function(gameId, j){
@@ -59,7 +54,7 @@ exports.tally = function(req, res){
                     });
                 });
             });
-            res.render('tally', {games: games, winner: winner, votes: votes});
+            res.render('tally', {irvResults: irvResults, mmpoResults: mmpoResults, votes: votes});
         });
     });
 };

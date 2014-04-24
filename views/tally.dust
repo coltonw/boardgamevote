@@ -53,16 +53,35 @@
   </div>
   <div class="container" style="padding-top: 50px;">
     <h1>Final Tally</h1>
-    {#games}
-    <!-- vote row -->
-    <div class="row">{~n}
-    <div class="col-md-2">{name}</div>
-    {#votes}
-    <div class="col-md-1">{.}</div>{~n}
-    {/votes}
-    </div>{~n}
-    {/games}
-    <h1>{winner} is the winner!</h1>
+    {?mmpoResults.tied}
+      <h3>Results before Tiebreaker</h3>
+      <div class="row">{~n}
+    {/mmpoResults.tied}
+    {#mmpoResults.tied}
+      {?thumbnail}
+      <div class="col-sm-2 thumb">
+        <a href="http://boardgamegeek.com/boardgame/{id}" target="_blank"><img src="{thumbnail}"></a>
+      {:else}
+      <div class="col-sm-2">
+        <a href="http://boardgamegeek.com/boardgame/{id}" target="_blank">{name}</a>
+      {/thumbnail}
+      </div>{~n}
+    {/mmpoResults.tied}
+    {?mmpoResults.tied}
+      </div>{~n}
+    {/mmpoResults.tied}
+    
+
+    {?mmpoResults.tieBreakers}
+      <h3>Tiebreakers used (in order)</h3>
+    {/mmpoResults.tieBreakers}
+    {#mmpoResults.tieBreakers}
+      <p>{.}</p>
+    {/mmpoResults.tieBreakers}
+    <h1><a href="http://boardgamegeek.com/boardgame/{mmpoResults.winner}" target="_blank">{mmpoResults.winnerName}</a> is the winner!</h1>
+
+    <p>We have massively changed the voting method used in the Indifference Engine.  The winner in the legacy method would have been 
+    <a href="http://boardgamegeek.com/boardgame/{irvResults.winner}" target="_blank">{irvResults.winnerName}</a>.</p>
   <div class="panel panel-default">
   <div class="panel-heading"><h3 class="panel-title">Votes</h3></div>
   <div class="panel-body">
