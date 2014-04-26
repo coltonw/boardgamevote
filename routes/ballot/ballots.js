@@ -23,11 +23,12 @@ exports.post = {
 exports.index = function(req, res){
     req.db.collection('ballot', function(er, collection) {
         collection.find().sort({$natural:-1}).limit(40).toArray(function(err, ballots) {
+            var currentBallot = ballots[0] ? ballots[0]._id.toHexString() : null;
             ballots.forEach(function(ballot, j){
                 ballots[j].created = ballot.created || ballot._id.getTimestamp().toLocaleString();
                 ballots[j].name = ballot.name || ballot._id.toHexString();
             });
-            janitor.render(res, 'ballots', {ballots: ballots});
+            janitor.render(res, 'ballots', {ballots: ballots, ballot: currentBallot});
         });
     });
 };
@@ -40,7 +41,7 @@ exports.create = function(req, res){
     request.get('http://www.boardgamegeek.com/xmlapi2/collection?username=dagreenmachine&own=1', function (error, response, body) {
         if (!error && response.statusCode == 200) {
             parser.parseString(body, function (err, result) {
-                janitor.render(res, 'ballot', {action: '/api/ballot', games: result.items.item});
+                janitor.render(res, 'ballot', {action: '/api/ballot', games: result.items.item}, null, req.db);
             });
         }
     });

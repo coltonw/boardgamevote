@@ -12,7 +12,8 @@
       <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
               <li><a href="/">Home</a></li>
-              <li><a href="/ballot/{ballot}">Final Tally</a></li>
+              <li><a href="/ballot/{ballot}/tally">Final Tally</a></li>
+              {+additionalNavigation/}
           </ul>
       </div><!--/.nav-collapse -->
   </div>

@@ -54,7 +54,7 @@ exports.tally = function(req, res){
                     });
                 });
             });
-            janitor.render(res, 'tally', {irvResults: irvResults, mmpoResults: mmpoResults, votes: votes});
+            janitor.render(res, 'tally', {irvResults: irvResults, mmpoResults: mmpoResults, votes: votes, ballot: req.ballot._id.toHexString() });
         });
     });
 };
