@@ -4,7 +4,7 @@
 var ObjectID = require('mongodb').ObjectID,
     xml2js = require('xml2js'),
     request = require('request'),
-    config = require('../../config.js');
+    janitor = require('../../lib/janitor.js');
 
 exports.post = {
     index: function(req, res){
@@ -27,7 +27,7 @@ exports.index = function(req, res){
                 ballots[j].created = ballot.created || ballot._id.getTimestamp().toLocaleString();
                 ballots[j].name = ballot.name || ballot._id.toHexString();
             });
-            res.render('ballots', {staticUrl: config.staticUrl, ballots: ballots});
+            janitor.render(res, 'ballots', {ballots: ballots});
         });
     });
 };
@@ -40,7 +40,7 @@ exports.create = function(req, res){
     request.get('http://www.boardgamegeek.com/xmlapi2/collection?username=dagreenmachine&own=1', function (error, response, body) {
         if (!error && response.statusCode == 200) {
             parser.parseString(body, function (err, result) {
-                res.render('ballot', {staticUrl: config.staticUrl, action: '/api/ballot', games: result.items.item});
+                janitor.render(res, 'ballot', {action: '/api/ballot', games: result.items.item});
             });
         }
     });

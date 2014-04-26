@@ -3,8 +3,8 @@
 //
 var ObjectID = require('mongodb').ObjectID,
     indiff = require('../../../lib/indiff'),
-    extend = require('node.extend'),
-    config = require('../../../config.js');
+    janitor = require('../../../lib/janitor'),
+    extend = require('node.extend');
 //
 // PARAM of ballot_id
 //
@@ -54,7 +54,7 @@ exports.tally = function(req, res){
                     });
                 });
             });
-            res.render('tally', {irvResults: irvResults, mmpoResults: mmpoResults, votes: votes});
+            janitor.render(res, 'tally', {irvResults: irvResults, mmpoResults: mmpoResults, votes: votes});
         });
     });
 };
@@ -66,5 +66,5 @@ exports.index = exports.tally;
  * GET voting booth for this ballot.
  */
 exports.vote = function(req, res) {
-    res.render('votingBooth', {staticUrl: config.staticUrl, action: '/api/vote', games: req.ballot.games, ballot: req.ballot._id.toHexString() });
+    janitor.render(res, 'votingBooth', {action: '/api/vote', games: req.ballot.games, ballot: req.ballot._id.toHexString() });
 };

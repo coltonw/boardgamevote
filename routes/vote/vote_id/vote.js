@@ -1,7 +1,8 @@
 //
 // Specific vote database interactions
 //
-var ObjectID = require('mongodb').ObjectID;
+var ObjectID = require('mongodb').ObjectID,
+    janitor = require('../../../lib/janitor');
 
 //
 // PARAM of vote_id
@@ -33,7 +34,7 @@ exports.index = function(req, res){
                     req.vote.vote[i][j] = ballotIndex[gameId] || 'Unknown game index';
                 });
             });
-            res.render('vote', {vote: req.vote.vote, nickname: req.vote.nickname, ballot: req.vote.ballot});
+            janitor.render(res, 'vote', {vote: req.vote.vote, nickname: req.vote.nickname, ballot: req.vote.ballot});
         });
     });
 };
