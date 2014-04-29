@@ -4,16 +4,21 @@
 var ObjectID = require('mongodb').ObjectID,
     xml2js = require('xml2js'),
     request = require('request'),
-    janitor = require('../../lib/janitor.js');
+    janitor = require('../../lib/janitor.js'),
+    validate = require('../../lib/validator.js');
 
 exports.post = {
     index: function(req, res){
         var body = req.body, i, id = new ObjectID();
-        req.db.collection('ballot', function(er, collection) {
-            collection.insert({_id: id, games: body.ballot, name: body.name}, {w: 1}, function(er,rs) {
-                res.json({redirect:'/ballot/' + id.toHexString() + '/vote'});
+        if(typeof body.name === 'string' && validate.candidates(body.ballot)) {
+            req.db.collection('ballot', function(er, collection) {
+                collection.insert({_id: id, games: body.ballot, name: body.name}, {w: 1}, function(er,rs) {
+                    res.json({redirect:'/ballot/' + id.toHexString() + '/vote'});
+                });
             });
-        });
+        } else {
+            res.send(400);
+        }
     }
 };
 
