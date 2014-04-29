@@ -8,18 +8,19 @@ exports.candidates = {
         "type": "object",
         "properties": {
             "id": {
-                "type": "string"
+                "type": "string",
+                "required":true
             },
             "thumbnail": {
                 "type": "string",
-                "pattern": "^http:\/\/cf\.geekdo-images\.com\/images\/[a-z0-9]*_t\.jpg$"
+                "pattern": "^http:\/\/cf\.geekdo-images\.com\/images\/[a-z0-9]*_t\.jpg$",
+                "required":true
             },
             "name": {
-                "type": "string"
+                "type": "string",
+                "required":true
             }
         },
         "additionalProperties": false
-        //TODO: Get this required clause to work
-        //"required": [ "id", "thumbnail", "name" ]
     }
 };
