@@ -19,6 +19,26 @@ exports.ballot_id = function(req, res, next, id){
 };
 
 //
+// DELETE of a ballot
+//
+exports['delete'] = {
+    index: function(req, res) {
+        req.db.collection('vote', function(er, collection) {
+            collection.remove({ballot: req.ballot._id}, {w: 0});
+        });
+        req.db.collection('ballot', function(er, collection) {
+            collection.remove({_id: req.ballot._id}, {w: 1}, function(err, item){
+                if(!err) {
+                    res.send(200);
+                } else {
+                    res.send(404);
+                }
+            });
+        });
+    }
+};
+
+//
 // GET tally page for this ballot.
 //
 exports.tally = function(req, res){
