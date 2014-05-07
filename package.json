@@ -28,7 +28,7 @@
     "dustjs-helpers": "^1.2.0",
     "xml2js": "^0.4.1",
     "request": "^2.34.0",
-    "losdos": "^0.0",
+    "losdos": "~0.0.4",
     "JSV": "^4.0.2"
   },
   "engines": {
