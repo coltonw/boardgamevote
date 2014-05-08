@@ -19,14 +19,14 @@ You can also set an environment variable `STATIC_URL` to an alternative address.
 
 ## History
 
-The engine started off as this [Go program](http://play.golang.org/p/w9aFrHdWmI) which used a modified Instant-runoff which allowed ties and eliminated based on lowest borda count.
+The engine started off as this [Go program](http://play.golang.org/p/w9aFrHdWmI) which used a modified Instant-runoff which allowed ties and eliminated based on lowest Borda count.
 Eventually I realized that having the the elimination be based on Borda made this voting method into almost Borda but just a little stranger.
 
-So when I first wrote the node.js indifference engine, it used my modified Instant-runoff but with borda only for **tiebreaking** for the elimination.
+So when I first wrote the node.js indifference engine, it used my modified Instant-runoff but with Borda only for **tiebreaking** for the elimination.
 
 The last thing I added was a random ballot tiebreaker for if there is a tie even with Borda.
 
-The downside of using Instant-runoff for sall numbers of votes is that it essentially eliminates compromizes.
+The downside of using Instant-runoff for small numbers of votes is that it essentially eliminates compromises.
 This is slightly improved because you can vote for multiple things at once, very similar to Approval voting but not quite.
 But this made a strange model where it was hugely to your advantage to vote as if it was an approval ballot, with all the ones you approve of tied for first.
 Except it was also to your advantage to rank all the ones you disapprove of in order.
