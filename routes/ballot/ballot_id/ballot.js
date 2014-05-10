@@ -36,6 +36,23 @@ exports['delete'] =  function(req, res) {
     });
 };
 
+function getTally(ballot, votes, callback, db) {
+    if (ballot.tally && votes.length === ballot.tally.votes.length) {
+        callback(ballot.tally);
+    } else {
+        ballot.tally = {
+            votes: votes,
+            irvResults: indiff.instantRunoff(extend(true, [], votes)),
+            mmpoResults: indiff.minimaxPairwiseOpposition(votes)
+        };
+        db.collection('ballot', function(er, collection) {
+            collection.save(ballot, {w: 1}, function(er,rs) {
+                callback(ballot.tally);
+            });
+        });
+    }
+}
+
 //
 // GET tally page for this ballot.
 //
@@ -46,33 +63,33 @@ exports.tally = function(req, res){
                 res.render('tally', {mmpoResults: {winnerName: 'NO VOTES YET'}, votes: votes});
                 return;
             }
-            var irvResults, mmpoResults, ballotIndex = {}, i;
-            mmpoResults = indiff.minimaxPairwiseOpposition(votes);
-            irvResults = indiff.instantRunoff(extend(true, [], votes));
-            console.log(mmpoResults);
-
-            req.ballot.games.forEach(function(game){
-                if(game.id === irvResults.winner) {
-                    irvResults.winnerName = game.name;
+            getTally(req.ballot, votes, function(tally) {
+                var ballotIndex = {}, i;
+                req.ballot.games.forEach(function(game){
+                    if(game.id === tally.irvResults.winner) {
+                        tally.irvResults.winnerName = game.name;
+                    }
+                    if(game.id === tally.mmpoResults.winner) {
+                        tally.mmpoResults.winnerName = game.name;
+                    }
+                    ballotIndex[game.id] = game;
+                });
+                if(tally.mmpoResults.tied){
+                    for(i = 0; i < tally.mmpoResults.tied.length; i++) {
+                        tally.mmpoResults.tied[i] = ballotIndex[tally.mmpoResults.tied[i]] || {name:'Unknown game index'};
+                    }
                 }
-                if(game.id === mmpoResults.winner) {
-                    mmpoResults.winnerName = game.name;
-                }
-                ballotIndex[game.id] = game;
-            });
-            if(mmpoResults.tied){
-                for(i = 0; i < mmpoResults.tied.length; i++) {
-                    mmpoResults.tied[i] = ballotIndex[mmpoResults.tied[i]] || {name:'Unknown game index'};
-                }
-            }
-            votes.forEach(function(vote, k) {
-                vote.vote.forEach(function(tier, i){
-                    tier.forEach(function(gameId, j){
-                        votes[k].vote[i][j] = ballotIndex[gameId] || {name:'Unknown game index'};
+                votes.forEach(function(vote, k) {
+                    vote.vote.forEach(function(tier, i){
+                        tier.forEach(function(gameId, j){
+                            votes[k].vote[i][j] = ballotIndex[gameId] || {name:'Unknown game index'};
+                        });
                     });
                 });
-            });
-            janitor.render(res, 'tally', {irvResults: irvResults, mmpoResults: mmpoResults, votes: votes, ballot: req.ballot._id.toHexString() });
+                tally.votes = votes;
+                tally.ballot = req.ballot._id.toHexString();
+                janitor.render(res, 'tally', tally);
+            }, req.db);
         });
     });
 };
