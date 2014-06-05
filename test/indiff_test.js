@@ -1,5 +1,7 @@
-var indiff = require('../lib/indiff'),
-    should = require('should');
+var config = require('../config'),
+    should = require('should'),
+    blanket = require('blanket')(config.blanket),
+    indiff = require('../lib/indiff');
 
 describe('indifference engine minimaxPairwiseOpposition', function(){
     it('should always return a single winner with valid votes', function(){

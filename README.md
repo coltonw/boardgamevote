@@ -2,6 +2,8 @@
 
 A voting engine for ranked votes allowing ties.
 
+[![Build Status](https://travis-ci.org/coltonw/boardgamevote.svg?branch=master)](https://travis-ci.org/coltonw/boardgamevote) [![Coverage Status](https://img.shields.io/coveralls/coltonw/boardgamevote.svg)](https://coveralls.io/r/coltonw/boardgamevote) [![Dependency Status](https://gemnasium.com/coltonw/boardgamevote.svg)](https://gemnasium.com/coltonw/boardgamevote)
+
 ## Description
 
 Currently this is used to vote on what board game my game group is going to play each week.
