@@ -15,7 +15,6 @@ app.engine('dust', cons.dust);
 app.set('template_engine', 'dust');
 app.set('views', __dirname + '/views');
 app.set('view engine', 'dust');
-app.use(express.favicon());
 
 // parse request bodies (req.body)
 app.use(bodyParser());
