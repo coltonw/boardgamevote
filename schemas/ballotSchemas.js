@@ -13,7 +13,7 @@ exports.candidates = {
             },
             "thumbnail": {
                 "type": "string",
-                "pattern": "^http:\/\/cf\.geekdo-images\.com\/images\/[a-z0-9]*_t\.jpg$",
+                "pattern": "^http:\/\/cf\.geekdo-images\.com\/images\/[a-z0-9]*_t\.(?:jpg|png)$",
                 "required":true
             },
             "name": {
