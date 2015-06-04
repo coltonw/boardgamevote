@@ -41,11 +41,23 @@ exports.index = function(req, res){
 //
 exports.create = function(req, res){
     var parser = new xml2js.Parser();
-    request.get('http://www.boardgamegeek.com/xmlapi2/collection?username=dagreenmachine&own=1', function (error, response, body) {
-        if (!error && response.statusCode == 200) {
-            parser.parseString(body, function (err, result) {
-                janitor.render(res, 'ballot', {action: '/api/ballot', games: result.items.item}, null, req.db);
-            });
+    request.get('https://www.boardgamegeek.com/xmlapi2/collection?username=dagreenmachine&own=1', function (error, response, body) {
+        if (!error) {
+            if (response.statusCode === 200) {
+                parser.parseString(body, function (err, result) {
+                    if (result.items && result.items.item) {
+                        janitor.render(res, 'ballot', {action: '/api/ballot', games: result.items.item}, null, req.db);
+                    }
+                });
+            } else if (response.statusCode === 202) {
+                parser.parseString(body, function (err, result) {
+                    if (result.message) {
+                        janitor.render(res, 'message', {action: '/api/ballot', message: result.message}, null, req.db);
+                    }
+                });
+            }
+        } else {
+            janitor.render(res, 'message', {action: '/api/ballot', message: 'Unknown error'}, null, req.db);
         }
     });
 };
