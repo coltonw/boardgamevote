@@ -8,6 +8,8 @@ A voting engine for ranked votes allowing ties.
 
 Currently this is used to vote on what board game my game group is going to play each week.
 
+For an alternative way to choose a weekly board game / book / movie etc., check out [Revonarchy](https://github.com/coltonw/revonarchy)
+
 ## Usage
 
 To run the site, you must clone this repository and also the [bgv-assets repo](https://github.com/coltonw/bgv-assets) which is all the static assets for this site.
