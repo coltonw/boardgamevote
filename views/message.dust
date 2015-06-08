@@ -1,0 +1,8 @@
+{>fullPage title="Create a Board Game Ballot!"/}
+
+{<content}
+  <h1>There was an issue loading the Board Game Collection</h1>
+  <div>The following error occurred:</div>
+  <div class="well">{message}</div>
+  <div>Try refreshing the page!</div>
+{/content}
