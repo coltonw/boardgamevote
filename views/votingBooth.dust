@@ -2,10 +2,12 @@
 
 {<styles}
   <link href="{staticUrl}/style/tieable.css" rel="stylesheet">
+  <link href="{staticUrl}/style/rankem.css" rel="stylesheet">
 {/styles}
 {<scripts}
   <script src="{staticUrl}/js/html.sortable.0.1.1.js"></script>
   <script src="{staticUrl}/js/tieable.js"></script>
+  <script src="{staticUrl}/js/rankem.js"></script>
   <script src="{staticUrl}/js/voteMain.js"></script>
 {/scripts}
 
@@ -22,18 +24,18 @@
       </div>
   </div>
   <div class="row">
-    <ul class="tieable">
+    <div class="tieable">
     {#games}
-      {?thumbnail}<li id="{id}" class="col-sm-2 thumb"><a href="http://boardgamegeek.com/boardgame/{id}" target="_blank"><img src="{thumbnail}"></a></li>
+      {?thumbnail}<div id="{id}" class="col-sm-2 thumb kem-item"><a href="http://boardgamegeek.com/boardgame/{id}" target="_blank"><img src="{thumbnail}"></a></div>
       {:else}
-          <li id="{id}" class="col-sm-2"><a href="http://boardgamegeek.com/boardgame/{id}" target="_blank">{name}</a></li>
+          <div id="{id}" class="col-sm-2 kem-item"><a href="http://boardgamegeek.com/boardgame/{id}" target="_blank">{name}</a></div>
       {/thumbnail}
     {/games}
-    </ul>
+    </div>
   </div>
   <input type="hidden" name="ballot" value="{ballot}">
   <input type="hidden" name="action" value="{action}">
-  
+
   <!-- Button -->
   <div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
