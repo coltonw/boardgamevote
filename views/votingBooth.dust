@@ -1,12 +1,11 @@
 {>fullPage title="Vote on a Board Game!"/}
 
 {<styles}
-  <link href="{staticUrl}/style/tieable.css" rel="stylesheet">
   <link href="{staticUrl}/style/rankem.css" rel="stylesheet">
+  <link href="{staticUrl}/style/votingBooth.css" rel="stylesheet">
 {/styles}
 {<scripts}
   <script src="{staticUrl}/js/html.sortable.0.1.1.js"></script>
-  <script src="{staticUrl}/js/tieable.js"></script>
   <script src="{staticUrl}/js/rankem.js"></script>
   <script src="{staticUrl}/js/voteMain.js"></script>
 {/scripts}
