@@ -2,7 +2,7 @@
 
 A voting engine for ranked votes allowing ties.
 
-[![Build Status](https://travis-ci.org/coltonw/boardgamevote.svg?branch=master)](https://travis-ci.org/coltonw/boardgamevote) [![Coverage Status](https://img.shields.io/coveralls/coltonw/boardgamevote.svg)](https://coveralls.io/r/coltonw/boardgamevote) [![Dependency Status](https://gemnasium.com/coltonw/boardgamevote.svg)](https://gemnasium.com/coltonw/boardgamevote)
+[![Build Status](https://travis-ci.org/coltonw/boardgamevote.svg?branch=master)](https://travis-ci.org/coltonw/boardgamevote) [![Coverage Status](https://img.shields.io/coveralls/coltonw/boardgamevote.svg)](https://coveralls.io/r/coltonw/boardgamevote)
 
 ## Description
 
@@ -47,9 +47,8 @@ Allowing the ballot creator to choose whether he trusts his voters or not will b
 
 ## Credit
 
-- [Will Colton](https://github.com/coltonw)
-- [Ryan Malec](http://github.com/rwm28)
-
+-   [Will Colton](https://github.com/coltonw)
+-   [Ryan Malec](http://github.com/rwm28)
 
 ## License
 
