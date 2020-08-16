@@ -1,45 +1,45 @@
 {
-  "name": "boardgamevote",
-  "version": "0.0.0",
-  "description": "System for choosing what board game to play.",
-  "main": "index.js",
-  "scripts": {
-    "test": "./node_modules/.bin/mocha",
-    "report": "./node_modules/.bin/mocha -R html-cov > coverage.html"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/coltonw/boardgamevote.git"
-  },
-  "author": "coltonw@gmail.com",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/coltonw/boardgamevote/issues"
-  },
-  "homepage": "https://github.com/coltonw/boardgamevote",
-  "dependencies": {
-    "JSV": "^4.0.2",
-    "body-parser": "^1.12.4",
-    "consolidate": "^0.13.1",
-    "dustjs-helpers": "^1.7.1",
-    "dustjs-linkedin": "^2.7.1",
-    "express": "^4.12.4",
-    "logfmt": "^1.2.0",
-    "losdos": "0.0.6",
-    "mongodb": "^3.6.0",
-    "node.extend": "^1.1.5",
-    "request": "^2.57.0",
-    "seed-random": "^2.2.0",
-    "xml2js": "^0.4.9"
-  },
-  "engines": {
-    "node": "0.10.x"
-  },
-  "devDependencies": {
-    "mocha-lcov-reporter": "0.0.2",
-    "should": "^7.0.2",
-    "coveralls": "^2.11.2",
-    "mocha": "^2.2.5",
-    "blanket": "^1.1.7"
-  }
+    "name": "boardgamevote",
+    "version": "0.0.0",
+    "description": "System for choosing what board game to play.",
+    "main": "index.js",
+    "scripts": {
+        "test": "./node_modules/.bin/mocha",
+        "report": "./node_modules/.bin/mocha -R html-cov > coverage.html"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/coltonw/boardgamevote.git"
+    },
+    "author": "coltonw@gmail.com",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/coltonw/boardgamevote/issues"
+    },
+    "homepage": "https://github.com/coltonw/boardgamevote",
+    "dependencies": {
+        "JSV": "^4.0.2",
+        "body-parser": "^1.12.4",
+        "consolidate": "^0.13.1",
+        "dustjs-helpers": "^1.7.1",
+        "dustjs-linkedin": "^2.7.1",
+        "express": "^4.12.4",
+        "logfmt": "^1.2.0",
+        "losdos": "0.0.6",
+        "mongodb": "^3.6.0",
+        "node.extend": "^1.1.5",
+        "request": "^2.57.0",
+        "seed-random": "^2.2.0",
+        "xml2js": "^0.4.9"
+    },
+    "engines": {
+        "node": ">=10"
+    },
+    "devDependencies": {
+        "mocha-lcov-reporter": "0.0.2",
+        "should": "^7.0.2",
+        "coveralls": "^2.11.2",
+        "mocha": "^2.2.5",
+        "blanket": "^1.1.7"
+    }
 }
